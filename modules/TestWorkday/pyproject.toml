@@ -6,7 +6,7 @@ authors = []
 package-mode = false
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = "<4.0,>=3.11"
 sekoia-automation-sdk = "^1.21.1"
 
 [tool.poetry.group.dev.dependencies]
