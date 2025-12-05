@@ -1,0 +1,13 @@
+{
+  "configuration": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Empty",
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "description": "",
+  "name": "Empty",
+  "uuid": "49798305-c4a6-4ba7-917e-1685ae0140d1",
+  "version": "0.1.0"
+}
