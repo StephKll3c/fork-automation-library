@@ -3,14 +3,21 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "On-prem test",
     "type": "object",
-    "properties": {},
-    "required": []
+    "properties": {
+      "label": {
+        "description": "Any text: the module needs no settings, the account form needs a field",
+        "type": "string"
+      }
+    },
+    "required": [
+      "label"
+    ]
   },
   "description": "Test module for on-premise asset connectors: a collect action that keeps a checkpoint, asks for more pages and pushes two devices, and one that always fails",
   "name": "On-prem test",
   "uuid": "93d3ea55-64e6-4fa2-b072-fbe0c75f2648",
   "slug": "onprem-test",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "categories": [
     "Generic"
   ]
