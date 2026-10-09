@@ -1,0 +1,52 @@
+{
+  "name": "Collect test assets",
+  "description": "Collect action of the on-prem test connector, run by the managed playbook only",
+  "uuid": "3423cd03-13be-42a9-80f5-9437b813779f",
+  "docker_parameters": "onprem_test_collect_assets",
+  "internal": true,
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "asset_connector_uuid": {
+        "type": "string"
+      },
+      "connector_configuration_token": {
+        "type": "string"
+      },
+      "api_url": {
+        "type": "string"
+      },
+      "pages": {
+        "type": "integer"
+      },
+      "fail": {
+        "type": "boolean"
+      },
+      "sekoia_api_key": {
+        "type": "string"
+      },
+      "sekoia_base_url": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "asset_connector_uuid"
+    ]
+  },
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "page": {
+        "type": "integer"
+      },
+      "has_more": {
+        "type": "boolean"
+      },
+      "assets": {
+        "type": "integer"
+      }
+    }
+  }
+}

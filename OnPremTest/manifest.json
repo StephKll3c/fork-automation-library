@@ -1,0 +1,15 @@
+{
+  "configuration": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "On-prem test",
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "description": "Test module for on-premise asset connectors: a collect action that keeps a checkpoint, asks for more pages and can fail on demand",
+  "name": "On-prem test",
+  "uuid": "93d3ea55-64e6-4fa2-b072-fbe0c75f2648",
+  "slug": "onprem-test",
+  "version": "0.1.0",
+  "categories": ["Generic"]
+}
