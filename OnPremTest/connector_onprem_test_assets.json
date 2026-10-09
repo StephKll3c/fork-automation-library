@@ -5,29 +5,15 @@
   "docker_parameters": "onprem_test_assets_connector",
   "type": "asset",
   "capability": "host_detection",
-  "execution_modes": ["cloud", "on_premise"],
+  "execution_modes": [
+    "cloud",
+    "on_premise"
+  ],
   "on_premise_action": "3423cd03-13be-42a9-80f5-9437b813779f",
   "arguments": {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "properties": {
-      "api_url": {
-        "description": "Symphony API URL the collect action pushes its logs to",
-        "type": "string",
-        "default": "https://api.test.sekoia.io/v1/symphony"
-      },
-      "pages": {
-        "description": "Number of runs a sync takes: the action returns has_more until this many pages were collected",
-        "type": "integer",
-        "minimum": 1,
-        "default": 3
-      },
-      "fail": {
-        "description": "Make the collect action fail, to test the error path",
-        "type": "boolean",
-        "default": false
-      }
-    },
+    "properties": {},
     "required": []
   }
 }

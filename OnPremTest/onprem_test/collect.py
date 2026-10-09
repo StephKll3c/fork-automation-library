@@ -1,4 +1,4 @@
-"""Collect action of the on-prem test connector: a checkpoint, a page count, assets and a failure on demand"""
+"""Collect actions of the on-prem test connectors: a checkpoint, a page count and two devices, or a failure"""
 
 import json
 import time
@@ -16,25 +16,23 @@ from sekoia_automation.asset_connector.models.ocsf.device import (
 )
 
 CHECKPOINT = "checkpoint.json"
+# Runs a sync takes: has_more until this many pages were collected
+PAGES = 3
 DEVICES_PER_PAGE = 2
 
 
 class CollectAssets(Action):
     def run(self, arguments: dict) -> dict:
-        if arguments.get("fail"):
-            raise RuntimeError("Collect failed on purpose (fail=true)")
-
         # The connector storage: the checkpoint must survive from one run to the next
         checkpoint = self.data_path / CHECKPOINT
         page = json.loads(checkpoint.read_text())["page"] + 1 if checkpoint.exists() else 1
-        pages = int(arguments.get("pages") or 3)
-        has_more = page < pages
+        has_more = page < PAGES
 
         pushed = self._push_assets(arguments)
         # A finished sync starts over on the next tick
         checkpoint.write_text(json.dumps({"page": page if has_more else 0}))
 
-        self._push_log(arguments, f"Collected page {page}/{pages}: {pushed} assets, has_more={has_more}")
+        self._push_log(arguments, f"Collected page {page}/{PAGES}: {pushed} assets, has_more={has_more}")
         return {"page": page, "assets": pushed, "has_more": has_more}
 
     def _push_assets(self, arguments: dict) -> int:
@@ -82,14 +80,19 @@ class CollectAssets(Action):
     def _push_log(self, arguments: dict, message: str) -> None:
         """Push one log with the configuration token, as the connector would"""
         token = arguments.get("connector_configuration_token")
-        api_url = arguments.get("api_url")
-        if not token or not api_url:
-            self.log("No token or API URL: connector log not pushed", level="warning")
+        base_url = arguments.get("sekoia_base_url")
+        if not token or not base_url:
+            self.log("No token or base URL: connector log not pushed", level="warning")
             return
         response = requests.post(
-            f"{api_url.rstrip('/')}/connector-configurations/{arguments['asset_connector_uuid']}/logs",
+            f"{base_url.rstrip('/')}/api/v1/symphony/connector-configurations/{arguments['asset_connector_uuid']}/logs",
             json={"logs": [{"level": "info", "message": message, "date": datetime.now(UTC).isoformat()}]},
             headers={"Authorization": f"Bearer {token}"},
             timeout=30,
         )
         self.log(f"Connector log pushed: HTTP {response.status_code}")
+
+
+class CollectAssetsFailing(Action):
+    def run(self, arguments: dict) -> dict:
+        raise RuntimeError("Collect failed on purpose")

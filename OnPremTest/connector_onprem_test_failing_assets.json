@@ -1,0 +1,19 @@
+{
+  "name": "On-prem test assets (failing)",
+  "description": "Same collect, which always fails: to test the error path",
+  "uuid": "d3862a8f-0e37-48f7-a33f-01ad666f9651",
+  "docker_parameters": "onprem_test_failing_assets_connector",
+  "type": "asset",
+  "capability": "host_detection",
+  "execution_modes": [
+    "cloud",
+    "on_premise"
+  ],
+  "on_premise_action": "7f70698c-24f2-4d4e-955c-ac368df9d8d1",
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}

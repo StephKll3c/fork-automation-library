@@ -1,8 +1,8 @@
 {
-  "name": "Collect test assets",
-  "description": "Collect action of the on-prem test connector, run by the managed playbook only",
-  "uuid": "3423cd03-13be-42a9-80f5-9437b813779f",
-  "docker_parameters": "onprem_test_collect_assets",
+  "name": "Collect test assets (failing)",
+  "description": "Collect action of the failing on-prem test connector: always fails",
+  "uuid": "7f70698c-24f2-4d4e-955c-ac368df9d8d1",
+  "docker_parameters": "onprem_test_collect_assets_failing",
   "internal": true,
   "arguments": {
     "$schema": "http://json-schema.org/draft-07/schema#",

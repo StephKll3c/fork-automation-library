@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2026-10-09 - 0.2.0
+
+### Changed
+
+- No connector settings: the page count is fixed and the log URL comes from `sekoia_base_url`
+- A second connector, whose collect action always fails, replaces the `fail` setting
+
 ## 2026-10-09 - 0.1.0
 
 ### Added
